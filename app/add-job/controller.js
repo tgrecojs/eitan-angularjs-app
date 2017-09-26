@@ -3,7 +3,7 @@
 angular.module('myApp.AddJob', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/AddJob', {
+  $routeProvider.when('/add-job', {
     templateUrl: 'add-job/template.html',
     controller: 'AddJobCtrl'
   });

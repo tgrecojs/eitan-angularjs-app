@@ -12,10 +12,9 @@
         <input type="text" name="location" ng-model="newJob.location">
       </div>
   <button type="submit">Add Job</button>
-  
 </form>
-<!-- 
-  By commenting this out, you will render any new jobs
+
+ <!-- You can comment this out but i just wanted to show example of jobs being added to array -->
 <div  class="flex-row">
   <div ng-repeat="job in jobs">
     <h2>Job Title: {{job.title}}</h2>
@@ -23,4 +22,3 @@
     <h5>Location: {{job.location}}</h5>
   </div>
 </div>
--->
