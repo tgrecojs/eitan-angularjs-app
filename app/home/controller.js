@@ -1,6 +1,11 @@
 'use strict';
 
-angular.module('myApp.home', ['ngRoute'])
+// ngResource is throwing an error
+// to see error, uncomment out in index.html
+angular.module('myApp.home', ['ngRoute',
+  // ngResource
+])
+
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
@@ -10,5 +15,5 @@ angular.module('myApp.home', ['ngRoute'])
 }])
 
 .controller('HomeController', ['$scope',  'jobFactory', function($scope, jobFactory) {
-    $scope.jobs = jobFactory.jobs;
+    $scope.jobs = JSON.parse(localStorage.getItem('jobs'));
 }]);

@@ -13,12 +13,13 @@
       </div>
   <button type="submit">Add Job</button>
 </form>
-
+{{$scope}}
  <!-- You can comment this out but i just wanted to show example of jobs being added to array -->
 <div  class="flex-row">
-  <div ng-repeat="job in jobs">
+  <div ng-repeat="job in saved">
     <h2>Job Title: {{job.title}}</h2>
     <h4>Company Name: {{job.company}}</h4>
-    <h5>Location: {{job.location}}</h5>
+    <h5>Location: {{job.ltocation}}</h5>
   </div>
 </div>
+

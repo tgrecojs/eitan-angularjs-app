@@ -1,5 +1,6 @@
 angular.module('myApp.factories', []).factory('jobFactory', () => {
     const service = {};
+    // ATM - service = { }
     service.jobs = [{
       title : 'Job 1',
       location: 'NYC',
@@ -15,7 +16,8 @@ angular.module('myApp.factories', []).factory('jobFactory', () => {
       location: 'SF',
       company: 'Facebook'
     }];
-  
+    // service = { jobs : [....]}
+
     const resetForm = () => {
       let newJob = {
           title: '',
@@ -25,9 +27,12 @@ angular.module('myApp.factories', []).factory('jobFactory', () => {
   }
   
     const addJob = (newJob) => {
-      service.jobs.push(newJob);
       resetForm();
+      service.jobs.push(newJob);
     };
+    // service = { jobs : [....]}
+
+    service.addJob = addJob;
   
     return service;
     // return { service, addJob}
