@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.AddJob', ['ngRoute'])
+angular.module('myApp.AddJob', ['ngRoute', 'ngResource'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/add-job', {
@@ -9,13 +9,14 @@ angular.module('myApp.AddJob', ['ngRoute'])
   });
 }])
 
-.controller('AddJobCtrl', ['$scope',  'jobFactory',  function(
-  $scope, jobFactory) {
+
+.controller('AddJobCtrl', ['$scope', 'jobFactory',
+    function($scope, jobFactory) {
   /** jobFactory (service) = { 
       jobs: [....],
       addJob: fun
   }*/
-  $scope.myJobs = jobFactory.jobs;
+  
  
   const resetForm = () => {
       $scope.newJob = {

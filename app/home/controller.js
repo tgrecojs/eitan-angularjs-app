@@ -14,6 +14,9 @@ angular.module('myApp.home', ['ngRoute',
   });
 }])
 
-.controller('HomeController', ['$scope',  'jobFactory', function($scope, jobFactory) {
-    $scope.jobs = JSON.parse(localStorage.getItem('jobs'));
+.controller('HomeController', ['$scope','crudAPIFactory', function($scope, crudAPIFactory) {
+  
+  
+ 
+    console.log($scope, crudAPIFactory.getJobs().then(x => console.log('value from promise', x)));
 }]);
