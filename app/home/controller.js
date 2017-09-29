@@ -16,7 +16,12 @@ angular.module('myApp.home', ['ngRoute',
 
 .controller('HomeController', ['$scope','crudAPIFactory', function($scope, crudAPIFactory) {
   
-  
- 
-    console.log($scope, crudAPIFactory.getJobs().then(x => console.log('value from promise', x)));
+
+    
+  crudAPIFactory.getJobs().then(x => {
+      const data = x.data;
+      console.log('Data from promis', data);
+      $scope.jobs = data.jobs;
+      return $scope.jobs;
+    });
 }]);

@@ -29,7 +29,7 @@ angular.module('myApp.factories', []).factory('jobFactory', ($http) => {
   const getJobs = () => {
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/jobs'
+      url: 'http://localhost:4000/jobs'
   }).then(res => { 
     const jobs = res.data.jobs;
     return jobs;
@@ -45,8 +45,7 @@ angular.module('myApp.factories', []).factory('jobFactory', ($http) => {
 
     service.addJob = addJob;
     service.getJobs = getJobs;
-  
-    return service;
+     return service;
     // return { service, addJob}
   })
   .factory('crudAPIFactory', function($http) {
@@ -56,18 +55,14 @@ angular.module('myApp.factories', []).factory('jobFactory', ($http) => {
       //Get Company List
       crudFactory.getJobs = function() {
         return $http({
-              url: "http://localhost:3000/jobs",
+              url: "http://localhost:4000/jobs",
               method: 'GET'
              });
       };
     
       //Insert new Company.
-      crudFactory.createCompany = function (Company) {
-        return $http({
-              url: 'http://localhost:3000/createcompany/',
-              method: 'POST',
-              data : Company
-          });
+      crudFactory.createCompany = function (newJob) {
+        return $http.post('http://localhost:4000/jobs', { data: newJob});
       };
     
     

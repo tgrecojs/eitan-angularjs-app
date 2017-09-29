@@ -10,8 +10,11 @@ angular.module('myApp.AddJob', ['ngRoute', 'ngResource'])
 }])
 
 
-.controller('AddJobCtrl', ['$scope', 'jobFactory',
-    function($scope, jobFactory) {
+.controller('AddJobCtrl', ['$scope', '$http','jobFactory',
+    function(
+      $scope, 
+      $http, 
+      jobFactory) {
   /** jobFactory (service) = { 
       jobs: [....],
       addJob: fun
@@ -25,12 +28,12 @@ angular.module('myApp.AddJob', ['ngRoute', 'ngResource'])
           company: ''
       };
   }
-   const addJob = (job) => {
-    $scope.myJobs.push(job);
-    resetForm()
+   const addJob = (newJob) => {
+    return $http.post('http://localhost:4000/jobs', { data: newJob});
+    resetForm();
   };
 
-  $scope.addJob = jobFactory.addJob;
+  $scope.addJob = addJob;
 //
   console.log('scope', $scope);
 }])
