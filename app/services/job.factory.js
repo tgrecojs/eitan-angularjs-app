@@ -1,54 +1,5 @@
-angular.module('myApp.factories', []).factory('jobFactory', ($http) => {
-  const service = {};
-    // ATM - service = { }
-    service.jobs = [{
-      title : 'Job 1',
-      location: 'NYC',
-      company: 'Facebook'
-    },
-    {
-      title : 'Job 2',
-      location: 'NYC',
-      company: 'Google'
-    },
-    {
-      title : 'Job 3',
-      location: 'SF',
-      company: 'Facebook'
-    }];
-    // service = { jobs : [....]}
-
-    const resetForm = () => {
-      let newJob = {
-          title: '',
-          company: '',
-          location: ''
-      };
-  } 
-
-  const getJobs = () => {
-    $http({
-      method: 'GET',
-      url: 'http://localhost:4000/jobs'
-  }).then(res => { 
-    const jobs = res.data.jobs;
-    return jobs;
-  })
-  .catch(err => new Error(err));
-  };
-
-    const addJob = (newJob) => {
-      resetForm();
-      service.jobs.push(newJob);
-    };
-    // service = { jobs : [....]}
-
-    service.addJob = addJob;
-    service.getJobs = getJobs;
-     return service;
-    // return { service, addJob}
-  })
-  .factory('crudAPIFactory', function($http) {
+angular.module('myApp.factories', [])
+  .factory('crudAPIFactory', function($rootScope, $http) {
     
       var crudFactory = {};
     
@@ -59,30 +10,10 @@ angular.module('myApp.factories', []).factory('jobFactory', ($http) => {
               method: 'GET'
              });
       };
-    
-      //Insert new Company.
-      crudFactory.createCompany = function (newJob) {
-        return $http.post('http://localhost:4000/jobs', { data: newJob});
-      };
-    
-    
-    
-      //Update Company.
-       crudFactory.updateCompany = function (Company) {
-            return  $http({
-              url: 'http://localhost:3000/updatecompany/',
-              method: 'POST',
-              data : Company,
-          });
-          };
-    
-      //Delete Company.
-      crudFactory.deletecompany = function (Company) {
-       return  $http({
-              url: 'http://localhost:3000/deletecompany/'+ Company.companyId,
-              method: 'GET',
-          });
-      };    
+
+      crudFactory.jobsWereUpdated = function() {
+        $rootScope.$broadcast('update');
+      }
     
       return crudFactory;
     });

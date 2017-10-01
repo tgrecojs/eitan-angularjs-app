@@ -1,6 +1,7 @@
 <h2>Job Board</h2>
     <div  class="flex-row">
     <div ng-repeat="job in jobs">
+        <button ng-click="removeJob(job._id)">x</button>
         <h2>Job Title: {{job.title}}</h2>
         <h4>Company Name: {{job.company}}</h4>
         <h5>Location: {{job.location}}</h5>

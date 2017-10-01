@@ -10,14 +10,11 @@ angular.module('myApp.AddJob', ['ngRoute', 'ngResource'])
 }])
 
 
-.controller('AddJobCtrl', ['$scope', '$http','jobFactory',
+.controller('AddJobCtrl', ['$scope', '$http',
     function(
-      $scope, 
-      $http, 
-      jobFactory) {
-  /** jobFactory (service) = { 
-      jobs: [....],
-      addJob: fun
+      $scope, $http) {
+  /** 
+   * 
   }*/
   
  
@@ -29,12 +26,11 @@ angular.module('myApp.AddJob', ['ngRoute', 'ngResource'])
       };
   }
    const addJob = (newJob) => {
-    return $http.post('http://localhost:4000/jobs', { data: newJob});
+    $http.post('http://localhost:4000/jobs', { data: newJob});
     resetForm();
   };
-
+  // add to $scope so we can use in template
   $scope.addJob = addJob;
-//
-  console.log('scope', $scope);
+  // console.log('scope', $scope);
 }])
 
